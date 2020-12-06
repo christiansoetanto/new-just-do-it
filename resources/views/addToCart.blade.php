@@ -6,27 +6,21 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <img src="..." alt="..." class="img-thumbnail">
+                    <img src="{{url('/assets/'.$shoe->photo)}}" alt="" class="img-thumbnail">
                 </div>
                 <div class="col">
-                    <h4>nama</h4>
-                    <p>price</p>
-                    <p>description:</p>
-                    <p>blabla</p>
-                    <br>
-                    <a>Add to Cart</a>
-                    <a>Update Shoe</a>
-                </div>
-                <div class="col">
-
+                    <h4>{{$shoe->name}}</h4>
+                    <p>price: {{$shoe->price}}</p>
+                    <p>description:{{$shoe->description}}</p>
                 </div>
 
             </div>
-            <div class="form-group row">
-                <label for="exampleInputEmail1">Quantity</label>
-                <input class="form-control form-control-lg" type="text" placeholder="Quantity">
-            </div>
-            <button type="submit" class="btn btn-primary">Add To Cart</button>
+            <form action="{{route('cart.add')}}" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{$shoe->id}}"/>
+                <input type="number" name="quantity"/>
+                <button type="submit">submit</button>
+            </form>
         </div>
 
 

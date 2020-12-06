@@ -1,26 +1,19 @@
 @extends('master')
 
 @section('content')
-    <div class="card">
-        <h5 class="card-header text-center">View All Transaction</h5>
-        <div class="card-body">
-            @foreach()
-                <div class="row">
-                    <div class="col">
-                        <p>datetime</p>
-                    </div>
-                    <div class="col">
-                        <p> Total: </p>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach()
-                        <div class="col">
-                            <img src="..." alt="..." class="img-thumbnail">
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
+<h1>View all transaction</h1>
+
+    @foreach($transactions as $trans)
+        <div class="row">
+
+        {{$trans->transaction_date}}
+        Total: {{$trans->total_price}}
+        @foreach($trans->detail_transaction as $detail)
+            <div>
+                <img src="{{url('/assets/'.$detail->shoe->photo)}}" alt="" class="img-thumbnail">
+            </div>
+        @endforeach
         </div>
-    </div>
+
+    @endforeach
 @endsection

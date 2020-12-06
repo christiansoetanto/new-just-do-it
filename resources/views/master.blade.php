@@ -17,12 +17,12 @@
                 <p>Just Du It !</p>
             </a>
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             {{--        <a href="{{url('/logout')}}" style="right: 10px" style = "position: absolute">Logout</a>--}}
-            <a href="{{url('/login')}}" style="right: 10px" style = "position: absolute">Login</a>
-            <a href="{{url('/login')}}" style="right: 10px" style = "position: absolute">Register</a>
+            <a href="{{url('/login')}}" style = "">Login</a>
+            <a href="{{url('/login')}}" style = "">Register</a>
         </nav>
 
     </div>

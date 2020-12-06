@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailtransactionTable extends Migration
+class CreateDetailtransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDetailtransactionTable extends Migration
      */
     public function up()
     {
-        Schema::create('detailtransaction', function (Blueprint $table) {
+        Schema::create('detail_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaction_header_id')->constrained('headertransaction')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('header_transaction_id')->constrained('header_transactions')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('shoe_id')->constrained('shoes')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateDetailtransactionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detailtransaction');
+        Schema::dropIfExists('detail_transactions');
     }
 }
