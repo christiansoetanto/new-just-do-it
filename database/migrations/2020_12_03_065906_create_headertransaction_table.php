@@ -21,8 +21,8 @@ class CreateHeadertransactionTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
+
      * Reverse the migrations.
      *
      * @return void

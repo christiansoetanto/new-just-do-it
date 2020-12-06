@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Shoe;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class ShoeController extends Controller
             'quantity' =>$request->get('qty')
         ]);
         $cart->save();
+        return view('getCart')->with('success','berhasil ditambahkan');
     }
     public function getEdit($id){
         $shoe = Shoe::all()->where('id', $id);
@@ -55,8 +57,32 @@ class ShoeController extends Controller
 
         Shoe::where('id', $request->get('id'))->update(['quantity' => $request->get('qty')]);
         dd(Shoe::all());
+        return view('getCart')->with('success','berhasil di edit');
     }
 
+    public function deleteCart($id){
+        $validator = Validator::make([
+            'id' => $id,
+        ],[
+            'id' => 'required|integer'
+        ]);
 
+        if($validator->fails()){
+            return back()->withErrors($validator->errors());
+        }
+
+        $shoe = Cart::find($id);
+        $shoe->delete();
+
+        return redirect('cart')->with('success','berhasil delete');
+
+    }
+
+    public function searchShoe(Request $request){
+        $search = $request->input('search');
+
+        $shoes = Shoe::where('name','like',"%$search%");
+        return view('index',['shoes'=>$shoes]);
+    }
 
 }
