@@ -36,19 +36,33 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3 px-1 bg-dark position-fixed" id="sticky-sidebar">
-                    <form class="form-inline">
-                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>
+                        </li>
                         @if($auth)
                             @if($role == 'member')
+                                <li class="nav-item active">
                                 <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewCart')}}`">View Cart</button>
+
+                                </li>
+                                <li class="nav-item active">
                                 <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
+
+                                </li>
                             @elseif($role == 'admin')
-                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>
-                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
+                                <li class="nav-item active">
+
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>
+                                </li>
+                                <li class="nav-item active">
+
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
+                                </li>
 
                             @endif
                         @endif
-                    </form>
+                    </ul>
                 </div>
                 <div class="col offset-3" id="main">
                     @yield('content')
