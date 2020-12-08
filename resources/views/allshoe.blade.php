@@ -16,9 +16,9 @@
                                 >
                                 <div class="card-body">
                                     <a href="{{url('/shoe/'.$shoe->id)}}">
-                                        Name:{{$shoe->name}}
+                                        {{$shoe->name}}
                                     </a>
-                                    <p>  Price:{{$shoe->price}}</p>
+                                    <p> Rp. {{$shoe->price}}</p>
                                 </div>
                             </div>
                         </div>
