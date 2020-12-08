@@ -11,18 +11,29 @@ use App\Transaction;
 use App\User;
 use http\Header;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class AppController extends Controller
 {
     public function index(){
         $shoes = Shoe::all();
-        return view('allshoe', ['shoes' => $shoes]);
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
+        }
+        return view('allshoe', ['shoes' => $shoes,'auth'=>$auth,'role'=>$role]);
 
     }
     public function detail($id){
         $shoe = Shoe::find($id);
-        return view('detail', ['shoe' => $shoe]);
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
+        }
+        return view('detail', ['shoe' => $shoe,'auth'=>$auth,'role'=>$role]);
     }
 
     public function getAddToCart($id){

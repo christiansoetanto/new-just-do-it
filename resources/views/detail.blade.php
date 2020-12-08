@@ -9,8 +9,13 @@
             <h4>{{$shoe->name}}</h4>
             <p>price: {{$shoe->price}}</p>
             <p>description:{{$shoe->description}}</p>
-            <a href="{{url('getAddToCart/'.$shoe->id)}}">Add to Cart</a>
-            <a href="{{url('getUpdateShoe/'.$shoe->id)}}">Update Shoe</a>
+            @if($auth)
+                @if($role == 'member')
+                    <a href="{{url('getAddToCart/'.$shoe->id)}}">Add to Cart</a>
+                @elseif($role == 'admin')
+                    <a href="{{url('getUpdateShoe/'.$shoe->id)}}">Update Shoe</a>
+                @endif
+            @endif
         </div>
         <div class="col">
 
