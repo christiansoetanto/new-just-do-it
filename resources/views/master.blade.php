@@ -11,44 +11,68 @@
 </head>
 <body>
     <div class="header">
-        <nav class="navbar navbar-light bg-light justify-content-between">
+        <nav class="navbar navbar-light justify-content-between" style="background-color: #e3f2fd;" >
             <a class="navbar-brand" href="{{url('/shoe')}}">
                 <img src="{{url('/assets/logo.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="logo">
-                <p>Just Du It !</p>
+                Just Du It !
             </a>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <span class="navbar-text">
             @if($auth)
-
-                <a href="{{url('/logout')}}" style="right: 10px" style = "position: absolute">Logout</a>
-            @else
-                <a href="{{url('/register')}}" style = "">Register</a>
-                <a href="{{url('/login')}}" style = "">Login</a>
-            @endif
-        </nav>
-
-    </div>
-    <div class="body">
-        <nav class="navbar navbar-light fixed-left" style="background-color: #e3f2fd;">
-            <form class="form-inline">
-                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>
-                @if($auth)
-                    @if($role == 'member')
-                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewCart')}}`">View Cart</button>
-                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
-                    @elseif($role == 'admin')
-                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>
-                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
-
-                    @endif
+                    <a href="{{url('/logout')}}" style="right: 10px" style = "position: absolute">Logout</a>
+                @else
+                    <a href="{{url('/register')}}" style = "">Register</a>
+                    <a href="{{url('/login')}}" style = "">Login</a>
                 @endif
-            </form>
+            </span>
         </nav>
-        <div class="container">
-            @yield('content')
+    </div>
+
+
+    <div class="body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3 px-1 bg-dark position-fixed" id="sticky-sidebar">
+                    <form class="form-inline">
+                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>
+                        @if($auth)
+                            @if($role == 'member')
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewCart')}}`">View Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
+                            @elseif($role == 'admin')
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>
+
+                            @endif
+                        @endif
+                    </form>
+                </div>
+                <div class="col offset-3" id="main">
+                    @yield('content')
+                </div>
+            </div>
         </div>
+{{--        <nav class="navbar navbar-light fixed-left" style="background-color: #e3f2fd;">--}}
+{{--            <form class="form-inline">--}}
+{{--                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>--}}
+{{--                @if($auth)--}}
+{{--                    @if($role == 'member')--}}
+{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewCart')}}`">View Cart</button>--}}
+{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>--}}
+{{--                    @elseif($role == 'admin')--}}
+{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>--}}
+{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>--}}
+
+{{--                    @endif--}}
+{{--                @endif--}}
+{{--            </form>--}}
+{{--        </nav>--}}
+{{--        <div class="container">--}}
+{{--            @yield('content')--}}
+{{--        </div>--}}
 
     </div>
 </body>
