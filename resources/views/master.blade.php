@@ -17,12 +17,15 @@
                 Just Du It !
             </a>
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{Request::input('search')}}">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             <span class="navbar-text">
             @if($auth)
-                    <a href="{{url('/logout')}}" style="right: 10px" style = "position: absolute">Logout</a>
+                <form action="{{route('logout')}}" method = "post">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
                 @else
                     <a href="{{url('/register')}}" style = "">Register</a>
                     <a href="{{url('/login')}}" style = "">Login</a>

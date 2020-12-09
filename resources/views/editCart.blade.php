@@ -1,30 +1,34 @@
 @extends('master')
 
 @section('content')
-    <div class="row">
-        <div class="col">
-            <img src="..." alt="..." class="img-thumbnail">
-        </div>
-        <div class="col">
-            <h4>nama</h4>
-            <p>price</p>
-            <p>description:</p>
-            <p>blabla</p>
-            <br>
-            <div class="form-group row">
-                <label for="exampleInputEmail1">Quantity</label>
-                <input class="form-control form-control-lg" type="text" placeholder="Quantity">
-            </div>
-            <br>
+    <div class="card">
+        <h5 class="card-header text-center">Add To Cart</h5>
+        <div class="card-body">
             <div class="row">
-                <a>Update Cart</a>
-                <a>Delete</a>
+                <div class="col">
+                    <img src="{{url('/assets/'.$shoe->photo)}}" alt="" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <h4>{{$shoe->name}}</h4>
+                    <p>Price: {{$shoe->price}}</p>
+                    <p>Description:{{$shoe->description}}</p>
+                </div>
+
             </div>
+            <form action="{{route('cart.update')}}" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{$shoe->id}}"/>
+                <input type="number" name="quantity" value="{{$cart->quantity}}"/>
+                <button type="submit">Update Cart</button>
 
+            </form>
+            <form action="{{route('cart.delete')}}" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{$shoe->id}}"/>
+                <button type="submit">Delete</button>
+            </form>
         </div>
-        <div class="col">
 
-        </div>
 
     </div>
 @endsection

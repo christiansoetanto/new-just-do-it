@@ -2,18 +2,19 @@
 
 @section('content')
 <h1>View all transaction</h1>
+    @if($transactions != 'null')
+        @foreach($transactions as $trans)
+            <div class="row">
 
-    @foreach($transactions as $trans)
-        <div class="row">
-
-        {{$trans->transaction_date}}
-        Total: {{$trans->total_price}}
-        @foreach($trans->detail_transaction as $detail)
-            <div>
-                <img src="{{url('/assets/'.$detail->shoe->photo)}}" alt="" class="img-thumbnail">
+                {{$trans->transaction_date}}
+                Total: {{$trans->total_price}}
+                @foreach($trans->detail_transaction as $detail)
+                    <div>
+                        <img src="{{url('/assets/'.$detail->shoe->photo)}}" alt="" class="img-thumbnail">
+                    </div>
+                @endforeach
             </div>
-        @endforeach
-        </div>
 
-    @endforeach
+        @endforeach
+    @endif
 @endsection

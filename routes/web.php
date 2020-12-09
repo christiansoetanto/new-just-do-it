@@ -27,6 +27,9 @@ Route::get('/getAddToCart/{id}', 'AppController@getAddToCart');
 Route::post('/postAddToCart', 'AppController@postAddToCart')->name('cart.add');
 Route::get('/viewCart', 'AppController@viewCart');
 Route::post('/checkout', 'AppController@checkoutCart');
+Route::get('/editCart/{id}', 'AppController@geteditCart');
+Route::post('/updateCart', 'AppController@postupdateeditCart')->name('cart.update');
+Route::post('/deleteCart', 'AppController@postdeleteeditCart')->name('cart.delete');
 
 Route::get('/viewTrans', 'AppController@viewTrans');
 

@@ -10,8 +10,8 @@
                 </div>
                 <div class="col">
                     <h4>{{$shoe->name}}</h4>
-                    <p>price: {{$shoe->price}}</p>
-                    <p>description:{{$shoe->description}}</p>
+                    <p>Price: {{$shoe->price}}</p>
+                    <p>Description:{{$shoe->description}}</p>
                 </div>
 
             </div>

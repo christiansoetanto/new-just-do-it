@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class AppController extends Controller
 {
-    public function index(){
-        $shoes = Shoe::all();
+    public function index(Request $request){
+        $search = $request->input('search');
+        $shoes = Shoe::paginate(6);
+        $shoes = Shoe::where('name','like',"%$search%")->paginate(6);
         $auth = Auth::check();
         $role = 'guest';
         if($auth){
@@ -37,8 +39,13 @@ class AppController extends Controller
     }
 
     public function getAddToCart($id){
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
+        }
         $shoe = Shoe::find($id);
-        return view('addToCart', ['shoe' => $shoe]);
+        return view('addToCart', ['shoe' => $shoe,'auth'=>$auth,'role'=>$role]);
     }
 
     public function postAddToCart(Request $request){
@@ -51,30 +58,40 @@ class AppController extends Controller
         $shoe_id = $request->get('id');
         $qty = $request->get('quantity');
 
-        $user_id = 1;
-        $x = Cart::where('user_id', $user_id)->where('shoe_id', $shoe_id)->first();
-        if(x == null){
-
-        }
-
+        $user_id = Auth::id();
+//        cek ini
         //find dulu shoe id nya,
         //kalau sudah ada, tambah quantity,
         //kalau belum ada, insert baru.
+        $x = Cart::where('user_id', $user_id)->where('shoe_id', $shoe_id)->first();
+        if($x == null){
+            $cart = new Cart([
+                'user_id' => $user_id,
+                'shoe_id' => $shoe_id,
+                'quantity' => $qty
+            ]);
+            $cart->save();
+        }
+        else{
+            $x->quantity += $qty;
+            $x->save();
+        }
 
         //notes untuk COllection(get) pake bla->count(), utk Eloquent(first) pake == null
-        $cart = new Cart([
-            'user_id' => 1,
-            'shoe_id' => $shoe_id,
-            'quantity' => $qty
-        ]);
-        $cart->save();
+
 
         return redirect('/shoe');
 
     }
+
     public function getUpdateShoe($id){
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
+        }
         $shoe = Shoe::find($id);
-        return view('updateShoe', ['shoe' => $shoe]);
+        return view('updateShoe', ['shoe' => $shoe,'auth'=>$auth,'role'=>$role]);
     }
 
     public function postUpdateShoe(Request $request){
@@ -89,24 +106,34 @@ class AppController extends Controller
         $shoe->name = $request->get('name');
         $shoe->price = $request->get('price');
         $shoe->description = $request->get('description');
-        $shoe->name = $request->get('name');
+//        $shoe->name = $request->get('name');
         $shoe->save();
         return redirect('/shoe');
 
     }
 
     public function viewCart(){
-
-        $carts = Cart::all()->where('user_id', 1);
-        foreach ($carts as $cart){
-            $cart->shoe = $cart->shoe()->first();
+        $user_id = Auth::id();
+        $carts = Cart::all()->where('user_id', $user_id);
+//        dd($carts);
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
         }
-        return view('cart', ['carts' => $carts]);
+        if($carts->count() > 0){
+            foreach ($carts as $cart){
+                $cart->shoe = $cart->shoe()->first();
+            }
+            return view('cart', ['carts' => $carts, 'auth'=>$auth,'role'=>$role]);
+        }
+
+        return view('cart', ['carts' => 'null', 'auth'=>$auth,'role'=>$role]);
     }
 
     public function checkoutCart(){
-        $user_id = 1;
-        $carts = Cart::all()->where('user_id', 1);
+        $user_id = Auth::id();
+        $carts = Cart::all()->where('user_id', $user_id);
         $total_price = 0;
         foreach($carts as $cart){
             $cart->shoe = $cart->shoe()->first();
@@ -134,24 +161,71 @@ class AppController extends Controller
 
     }
 
-    public function viewTrans(){
-        $user_id = 1;
-        $header_transactions = HeaderTransaction::where('user_id'   , 100)->first();
-        dd($header_transactions);
-        if($header_transactions->count()){
-            echo "123";
-        }else{
-            echo "456";
+    public function geteditCart($id){
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
         }
-        dd($header_transactions);
+        $user_id = Auth::id();
+        $shoe = Shoe::find($id);
+        $cart = Cart::where('user_id',$user_id)->where('shoe_id',$id)->first();
+        return view('editCart', ['shoe' => $shoe,'auth'=>$auth,'role'=>$role,'cart'=>$cart]);
+    }
 
-        foreach ($header_transactions as $head){
-            $head->detail_transaction = $head->detail_transaction()->get();
-            foreach($head->detail_transaction as $detail){
-                $detail->shoe = $detail->shoe()->first();
-            }
+    public function postupdateeditcart(Request $request){
+        $request->validate([
+            'id'=>'required',
+            'quantity'=>'required'
+        ]);
+        $user_id = Auth::id();
+        $cart = Cart::where('user_id', $user_id)->where('shoe_id', $request->get('id'))->first();
+//        dd($cart);
+        if($cart == null) return redirect()->route('cart');
+        else{
+            $cart->quantity = $request->get('quantity');
+            $cart->save();
         }
-        return view('transaction', ['transactions' => $header_transactions]);
+        return redirect('/viewCart');
+
+    }
+
+    public function postdeleteeditcart(Request $request){
+        $request->validate([
+            'id'=>'required'
+        ]);
+        $cart = Cart::find($request->get('id'));
+        $cart->delete();
+        return redirect('/viewCart');
+    }
+
+    public function viewTrans(){
+        $user_id = Auth::id();
+        $auth = Auth::check();
+        $role = 'guest';
+        if($auth){
+            $role = Auth::user()->role;
+        }
+        if($role == 'member'){
+            $header_transactions = HeaderTransaction::where('user_id', $user_id)->get();
+        }
+        else if($role == 'admin'){
+            $header_transactions = HeaderTransaction::all();
+        }
+//        dd($header_transactions);
+        if($header_transactions != null){
+
+            foreach ($header_transactions as $head){
+                $head->detail_transaction = $head->detail_transaction()->get();
+                foreach($head->detail_transaction as $detail){
+                    $detail->shoe = $detail->shoe()->first();
+                }
+            }
+            return view('transaction', ['transactions' => $header_transactions,'auth'=>$auth,'role'=>$role]);
+        }
+
+//        dd($header_transactions);
+        return view('transaction', ['transactions' => 'null','auth'=>$auth,'role'=>$role]);
     }
 
 
@@ -176,11 +250,5 @@ class AppController extends Controller
 
     }
 
-    public function searchShoe(Request $request){
-        $search = $request->input('search');
-
-        $shoes = Shoe::where('name','like',"%$search%");
-        return view('index',['shoes'=>$shoes]);
-    }
 
 }
