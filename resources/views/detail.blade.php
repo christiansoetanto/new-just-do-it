@@ -3,12 +3,12 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <img src="{{url('/assets/'.$shoe->photo)}}" alt="" class="img-thumbnail">
+            <img src="{{Storage::url('/uploads/'.$shoe->photo)}}" alt="" class="img-thumbnail">
         </div>
         <div class="col">
             <h4>{{$shoe->name}}</h4>
-            <p>price: {{$shoe->price}}</p>
-            <p>description:{{$shoe->description}}</p>
+            <p>Price: {{$shoe->price}}</p>
+            <p>Description:{{$shoe->description}}</p>
             @if($auth)
                 @if($role == 'member')
                     <a href="{{url('getAddToCart/'.$shoe->id)}}">Add to Cart</a>

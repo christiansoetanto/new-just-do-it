@@ -25,13 +25,19 @@
     <list default="true" id="dec345e7-0813-4de7-9116-54cc8e44e3f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Shoe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Shoe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/addShoe.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/addShoe.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/addToCart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/addToCart.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/allshoe.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/allshoe.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/editCart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/editCart.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/transaction.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/transaction.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/updateShoe.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/updateShoe.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,7 +211,10 @@
       <workItem from="1607347692142" duration="63000" />
       <workItem from="1607434574777" duration="5526000" />
       <workItem from="1607440124408" duration="5550000" />
-      <workItem from="1607521428005" duration="9150000" />
+      <workItem from="1607521428005" duration="9792000" />
+      <workItem from="1607591223135" duration="280000" />
+      <workItem from="1607608612346" duration="7867000" />
+      <workItem from="1607660172383" duration="7954000" />
     </task>
     <servers />
   </component>
@@ -225,14 +234,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607265326870">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607663167441">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607265326870" />
-    <state x="93" y="122" width="1350" height="638" key="DiffContextDialog" timestamp="1607529659454">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607663167441" />
+    <state x="93" y="122" width="1350" height="638" key="DiffContextDialog" timestamp="1607669437849">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="122" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1607529659454" />
+    <state x="93" y="122" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1607669437849" />
     <state x="471" y="135" key="NewPhpClassDialog" timestamp="1607169019559">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -245,9 +254,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="478" y="11" width="579" height="801" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607172398581" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607530315279">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607667487965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607530315279" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607667487965" />
   </component>
 </project>

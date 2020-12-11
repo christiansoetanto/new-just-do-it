@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="card">
-        <h5 class="card-header text-center">Add To Cart</h5>
+        <h5 class="card-header text-center bg-primary">Add To Cart</h5>
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <img src="{{url('/assets/'.$shoe->photo)}}" alt="" class="img-thumbnail">
+                    <img src="{{Storage::url('/uploads/'.$shoe->photo)}}" alt="" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <h4>{{$shoe->name}}</h4>

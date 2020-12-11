@@ -13,7 +13,7 @@
     <div class="header">
         <nav class="navbar navbar-light justify-content-between" style="background-color: #e3f2fd;" >
             <a class="navbar-brand" href="{{url('/shoe')}}">
-                <img src="{{url('/assets/logo.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+                <img src="{{Storage::url('/uploads/logo.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="logo">
                 Just Du It !
             </a>
             <form class="form-inline">
@@ -24,11 +24,13 @@
             @if($auth)
                 <form action="{{route('logout')}}" method = "post">
                     @csrf
-                    <button type="submit">Logout</button>
+                    <button class="btn btn-secondary" type="submit">Logout</button>
                 </form>
                 @else
-                    <a href="{{url('/register')}}" style = "">Register</a>
-                    <a href="{{url('/login')}}" style = "">Login</a>
+                    <button class="btn btn-secondary" type="button" onclick="window.location.href='{{url('/register')}}'">Register</button>
+                    <button class="btn btn-secondary" type="button" onclick="window.location.href='{{url('/login')}}'">Login</button>
+{{--                    <a href="{{url('/register')}}" style = "">Register</a>--}}
+{{--                    <a href="{{url('/login')}}" style = "">Login</a>--}}
                 @endif
             </span>
         </nav>
@@ -38,7 +40,7 @@
     <div class="body">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3 px-1 bg-dark position-fixed" id="sticky-sidebar">
+                <div class="col-3 px-1 bg-light position-fixed" id="sticky-sidebar">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                             <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>
@@ -56,7 +58,7 @@
                             @elseif($role == 'admin')
                                 <li class="nav-item active">
 
-                                    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/addShoe')}}`">Add Shoe</button>
                                 </li>
                                 <li class="nav-item active">
 
@@ -72,24 +74,6 @@
                 </div>
             </div>
         </div>
-{{--        <nav class="navbar navbar-light fixed-left" style="background-color: #e3f2fd;">--}}
-{{--            <form class="form-inline">--}}
-{{--                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/shoe')}}`">View All Shoe</button>--}}
-{{--                @if($auth)--}}
-{{--                    @if($role == 'member')--}}
-{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewCart')}}`">View Cart</button>--}}
-{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>--}}
-{{--                    @elseif($role == 'admin')--}}
-{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/')}}`">Add Shoe</button>--}}
-{{--                        <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href = `{{url('/viewTrans')}}`">View Transaction</button>--}}
-
-{{--                    @endif--}}
-{{--                @endif--}}
-{{--            </form>--}}
-{{--        </nav>--}}
-{{--        <div class="container">--}}
-{{--            @yield('content')--}}
-{{--        </div>--}}
 
     </div>
 </body>

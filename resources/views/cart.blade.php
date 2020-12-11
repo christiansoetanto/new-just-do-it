@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="card">
-        <h5 class="card-header text-center">View Cart</h5>
+        <h5 class="card-header text-center bg-primary">View Cart</h5>
         @if($carts != 'null')
             @foreach($carts as $cart)
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <img src="{{url('/assets/'.$cart->shoe->photo)}}" alt="" class="img-thumbnail">
+                            <img src="{{Storage::url('/uploads/'.$cart->shoe->photo)}}" alt="" class="img-thumbnail">
                         </div>
                         <div class="col">
                             <p>{{$cart->shoe->name}}</p>
@@ -22,12 +22,10 @@
                         <div class="col">
                             <button type="button" class="btn btn-primary" onclick="window.location.href='{{url('editCart/'.$cart->id)}}'">Edit</button>
                         </div>
-
                     </div>
 
 
                 </div>
-
             @endforeach
         @endif
         <div class="row">

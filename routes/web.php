@@ -20,18 +20,24 @@ Route::get('/', 'AppController@index');
 Route::get('/shoe', 'AppController@index');
 Route::get('/shoe/{id}', 'AppController@detail');
 
-Route::get('/getUpdateShoe/{id}', 'AppController@getUpdateShoe');
-Route::post('/postUpdateShoe', 'AppController@postUpdateShoe')->name('shoe.update');
+Route::get('/getUpdateShoe/{id}', 'ShoeController@getUpdateShoe');
+Route::post('/postUpdateShoe', 'ShoeController@postUpdateShoe')->name('shoe.update');
 
-Route::get('/getAddToCart/{id}', 'AppController@getAddToCart');
-Route::post('/postAddToCart', 'AppController@postAddToCart')->name('cart.add');
-Route::get('/viewCart', 'AppController@viewCart');
-Route::post('/checkout', 'AppController@checkoutCart');
-Route::get('/editCart/{id}', 'AppController@geteditCart');
-Route::post('/updateCart', 'AppController@postupdateeditCart')->name('cart.update');
-Route::post('/deleteCart', 'AppController@postdeleteeditCart')->name('cart.delete');
+Route::get('/addShoe', 'ShoeController@getAddShoe');
+Route::post('/postAddShoe', 'ShoeController@postAddShoe')->name('shoe.add');
 
-Route::get('/viewTrans', 'AppController@viewTrans');
+
+Route::get('/getAddToCart/{id}', 'CartController@getAddToCart');
+Route::post('/postAddToCart', 'CartController@postAddToCart')->name('cart.add');
+
+Route::get('/viewCart', 'CartController@viewCart');
+
+Route::post('/checkout', 'CartController@checkoutCart');
+Route::get('/editCart/{id}', 'CartController@geteditCart');
+Route::post('/updateCart', 'CartController@postupdateeditCart')->name('cart.update');
+Route::post('/deleteCart', 'CartController@postdeleteeditCart')->name('cart.delete');
+
+Route::get('/viewTrans', 'TransactionController@viewTrans');
 
 
 Auth::routes();

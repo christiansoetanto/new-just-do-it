@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="card">
-        <h5 class="card-header text-center">View Shoe</h5>
+        <h5 class="card-header text-center bg-primary">View Shoe</h5>
         <div class="card-body">
             <div class ="row">
                 @foreach($shoes as $shoe)
@@ -11,8 +11,8 @@
                         <div class="card-group">
                             <div class="card">
                                 <img
-                                    src="{{url('/assets/'.$shoe->photo)}}"
-                                    alt="{{$shoe->photo}}"
+                                    src="{{Storage::url('/uploads/'.$shoe->photo)}}"
+                                    alt="{{$shoe->photo}}" height="300px" width="334px"
                                 >
                                 <div class="card-body">
                                     <a href="{{url('/shoe/'.$shoe->id)}}">
@@ -30,19 +30,5 @@
         </div>
     </div>
 
-{{--    @foreach($shoes as $shoe)--}}
-{{--        <div>--}}
-{{--            <img--}}
-{{--                 src="{{url('/assets/'.$shoe->photo)}}"--}}
-{{--                 alt="{{$shoe->photo}}"--}}
-{{--            >--}}
-{{--        </div>--}}
-{{--        <a href="{{url('/shoe/'.$shoe->id)}}">--}}
-{{--            Name:{{$shoe->name}}--}}
-{{--        </a>--}}
-{{--        <div>--}}
-{{--            Price:{{$shoe->price}}--}}
-{{--        </div>--}}
-{{--    @endforeach--}}
 
 @endsection
