@@ -22,7 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec345e7-0813-4de7-9116-54cc8e44e3f5" name="Default Changelist" comment="" />
+    <list default="true" id="dec345e7-0813-4de7-9116-54cc8e44e3f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ShoeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ShoeController.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +200,7 @@
       <workItem from="1607521428005" duration="9792000" />
       <workItem from="1607591223135" duration="280000" />
       <workItem from="1607608612346" duration="7867000" />
-      <workItem from="1607660172383" duration="8581000" />
+      <workItem from="1607660172383" duration="10076000" />
     </task>
     <servers />
   </component>
@@ -215,6 +218,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607663167441">
@@ -237,9 +243,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="478" y="11" width="579" height="801" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1607172398581" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607667487965">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607673436677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607667487965" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607673436677" />
   </component>
 </project>

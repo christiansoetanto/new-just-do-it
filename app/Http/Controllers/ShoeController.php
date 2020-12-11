@@ -41,7 +41,7 @@ class ShoeController extends Controller
 
 
         $shoe->save();
-        return redirect('/shoe')->with('success','update success')->with('file',$filename);
+        return redirect('/shoe')->with('success','update success');
 
     }
 
@@ -59,7 +59,7 @@ class ShoeController extends Controller
             'name'=>'required',
             'price'=>'required',
             'description'=>'required',
-            'photo' =>'mines:jpeg,jpg,png'
+            'photo' =>'required|mines:jpeg,jpg,png'
         ]);
 
         if($request->file()){
