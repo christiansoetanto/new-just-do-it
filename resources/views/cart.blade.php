@@ -20,7 +20,7 @@
                             <p>{{$cart->quantity * $cart->shoe->price}}</p>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-primary" onclick="window.location.href='{{url('editCart/'.$cart->id)}}'">Edit</button>
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='{{url('editCart/'.$cart->shoe->id)}}'">Edit</button>
                         </div>
                     </div>
 

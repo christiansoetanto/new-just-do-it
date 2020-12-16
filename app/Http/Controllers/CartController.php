@@ -33,10 +33,6 @@ class CartController extends Controller
         $qty = $request->get('quantity');
 
         $user_id = Auth::id();
-//        cek ini
-        //find dulu shoe id nya,
-        //kalau sudah ada, tambah quantity,
-        //kalau belum ada, insert baru.
         $x = Cart::where('user_id', $user_id)->where('shoe_id', $shoe_id)->first();
         if($x == null){
             $cart = new Cart([
@@ -50,10 +46,7 @@ class CartController extends Controller
             $x->quantity += $qty;
             $x->save();
         }
-
         //notes untuk COllection(get) pake bla->count(), utk Eloquent(first) pake == null
-
-
         return redirect('/shoe');
 
     }
@@ -115,6 +108,7 @@ class CartController extends Controller
             $role = Auth::user()->role;
         }
         $user_id = Auth::id();
+
         $shoe = Shoe::find($id);
         $cart = Cart::where('user_id',$user_id)->where('shoe_id',$id)->first();
         return view('editCart', ['shoe' => $shoe,'auth'=>$auth,'role'=>$role,'cart'=>$cart]);
@@ -141,7 +135,8 @@ class CartController extends Controller
         $request->validate([
             'id'=>'required'
         ]);
-        $cart = Cart::find($request->get('id'));
+        $id = $request->get('id');
+        $cart = Cart::find($id);
         $cart->delete();
         return redirect('/viewCart');
     }

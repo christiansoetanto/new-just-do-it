@@ -24,7 +24,7 @@
             </form>
             <form action="{{route('cart.delete')}}" method="post">
                 @csrf
-                <input type="hidden" name="id" value="{{$shoe->id}}"/>
+                <input type="hidden" name="id" value="{{$cart->id}}"/>
                 <button type="submit">Delete</button>
             </form>
         </div>
